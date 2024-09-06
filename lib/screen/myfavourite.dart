@@ -1,44 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:project/screen/myfavourite.dart';
 import 'package:project/screen/provider/favourite-provider.dart';
 import 'package:provider/provider.dart';
 
-class FavouriteScreen extends StatefulWidget {
-  const FavouriteScreen({super.key});
+class MyfavouriteScreen extends StatefulWidget {
+  const MyfavouriteScreen({super.key});
 
   @override
-  State<FavouriteScreen> createState() => _FavouriteScreenState();
+  State<MyfavouriteScreen> createState() => _MyfavouriteScreenState();
 }
 
-class _FavouriteScreenState extends State<FavouriteScreen> {
-  List<int> selectedIndex = [];
-
+class _MyfavouriteScreenState extends State<MyfavouriteScreen> {
   @override
   Widget build(BuildContext context) {
-    print('build');
+    final FavouriteProviderScreen = Provider.of<FavouriteProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Favourite App'),
-        centerTitle: true,
-        actions: [
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MyfavouriteScreen(),
-                ),
-              );
-            },
-            child: Icon(Icons.favorite),
-          ),
-        ],
-      ),
-      body: Column(
+       body:  Column(
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: 100,
+              itemCount: FavouriteProviderScreen.selectedIndex.length,
               itemBuilder: (context, index) {
                 return Consumer<FavouriteProvider>(
                     builder: (context, value, child) {
@@ -62,7 +42,6 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
             ),
           ),
         ],
-      ),
-    );
+    ));
   }
 }
