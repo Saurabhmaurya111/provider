@@ -27,6 +27,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                    return  ListTile(
                   onTap: () {
                     if(value.selectedIndex.contains(index)){
+                        
                         value.removeItem(index);     
                     }
                     else{
